@@ -1,0 +1,411 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Am管理系统 (Power by MARS)</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="adminlte/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="adminlte/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="adminlte/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="adminlte/css/skins/_all-skins.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="adminlte/js/html5shiv.min.js"></script>
+    <script src="adminlte/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- The fav icon -->
+    <style type="text/css">
+        html {
+            overflow: hidden;
+        }
+        .main-footer {
+            padding: 0px;
+            height: 0px;
+        }
+        .datatable tbody tr.odd{
+            background-color: #f9f9f9;
+        }
+        .datatable a{
+            cursor: pointer;
+        }
+        .noty_layout .btn-confirm{
+            margin-left: 10px;
+        }
+        label.error{
+            color: red;
+        }
+        input.error{
+            border-color: red;
+        }
+        .page_tab_title{
+            padding-right: 5px;
+        }
+        .page-tabs-content a {
+            border-right: 1px solid #ddd  !important;
+        }
+        /* 
+        颜色说明：
+        AdminLTE 背景色 222d32 
+        Antd 背景色 001529
+        */
+        #header_logo {
+            background-color: #222d32; /* MARS 定制 */
+        }
+        #header_navbar {
+            background-color: #222d32; /* MARS 定制 */
+        }
+        #aside_main_sidebar {
+            background-color: #222d32; /* MARS 定制 */
+        }
+    </style>
+
+    <!-- jQuery 3 3.5.1 2.2.3 -->
+    <script src="adminlte/js/jquery-3.5.1.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="adminlte/js/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="adminlte/js/bootstrap.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="adminlte/js/jquery.slimscroll.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="adminlte/js/adminlte.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="adminlte/js/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="adminlte/js/adminlte-demo.js"></script>
+    <script src="adminlte/js/bootstrap-select.min.js"></script>
+    <script src="adminlte/js/bootstrap-select-defaults-zh_CN.min.js"></script>
+    <!--tabs-->
+    <script src="adminlte/js/app.js"></script>
+    <script src="adminlte/js/app_iframe.js"></script>
+    <script src="adminlte/js/app_menu_config.js"></script>
+    <script>
+        // 当前Noty插件可用的皮肤 mint, sunset, relax, nest, metroui, semanticui, light, bootstrap-v3, bootstrap-v4
+        var __config_noty_theme = 'bootstrap-v3';
+    </script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <header class="main-header" id="header_main">
+        <!-- Logo -->
+        <a href="/" class="logo" id="header_logo">
+            <!-- mini logo for sidAmebar mini 50x50 pixels -->
+            <span class="logo-mini">Am<!--<img src="#" />--></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg">
+                Am管理系统 <span style="font-size: x-small;">Power by MARS</span>
+                <!--<img src="#" />-->
+            </span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" id="header_navbar">
+            <!-- Sidebar toggle button-->
+            <a href="#" id="a_navbar_push" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!--
+                    <li>
+                        <a class="subsystitle" href="asset/a.html" target="_blank">官网1</a>
+                    </li>
+                    <li>
+                        <a class="subsystitle" href="asset/a.html" target="_blank">官网2</a>
+                    </li>
+                    <li>
+                        <a class="subsystitle" href="asset/a.html" target="_blank">官网3</a>
+                    </li>
+                    <li>
+                        <a class="subsystitle" href="asset/a.html" target="_blank">官网4</a>
+                    </li>
+                    <li>
+                        <a>|</a>
+                    </li>
+                    -->
+                    
+                    <!-- Messages: style can be found in dropdown.less-->
+                    <li class="dropdown messages-menu">
+                        <a href="#" onclick="addTabs({'id':'am_user','title':'用户管理','url':'asset/a.html','close':'true'});">
+                            <i class="fa fa-user-o"></i> 用户
+                        </a>
+                    </li>
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    <li class="dropdown notifications-menu">
+                        <a href="#" onclick="addTabs({'id':'am_role','title':'角色管理','url':'asset/a.html','close':'true'});">
+                            <i class="fa fa-users"></i> 角色
+                        </a>
+                    </li>
+                    <!-- Tasks: style can be found in dropdown.less -->
+                    <li class="dropdown tasks-menu">
+                        <a href="#" onclick="addTabs({'id':'am_menu','title':'菜单管理','url':'asset/a.html','close':'true'});">
+                            <i class="fa fa-list-ul"></i> 菜单
+                        </a>
+                    </li>
+                    <li class="dropdown tasks-menu">
+                        <a href="#" onclick="addTabs({'id':'am_config','title':'站点设置','url':'asset/a.html','close':'true'});">
+                            <i class="fa fa-cog"></i> 站点设置
+                        </a>
+                    </li>
+                    <li>
+                        <a>|</a>
+                    </li>
+
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#">欢迎您， Mars <i class="fa fa-flag"></i></a>
+                    </li>
+                    <li class="dropdown user user-menu">
+                        <a href="#"><i class="fa fa-power-off"></i> 退出</a>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar" id="aside_main_sidebar">
+    <div class="slimScrollDiv">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <div class="user-panel" id="div_left_user_panel">
+            <div class="pull-left image">
+            </div>
+            <div class="pull-left info">
+            </div>
+        </div>
+        <div id="div_left_menu_search">
+            <!-- search form -->
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" id="menu_search_input" class="form-control" autocomplete="off" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button type="button" name="search" id="search-btn" class="btn btn-flat" onclick="search_menu()">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
+            <!-- /.search form -->
+        </div>
+        <div id="div_left_menu_tree">
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <!-- 增加 data-accordion 可以是左侧菜单 menu 点击展开后，不自动收起（去除则会自动收起）-->
+            <ul class="sidebar-menu" data-accordion data-widget="tree">
+            </ul>
+        </div>
+    </section>
+    <!-- /.sidebar -->
+    </div>
+</aside>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper"  id="content-wrapper" style="min-height: 421px;">
+    <!--bootstrap tab风格 多标签页-->
+    <div class="content-tabs">
+        <button class="roll-nav roll-left tabLeft" onclick="scrollTabLeft()">
+            <i class="fa fa-backward"></i>
+        </button>
+        <nav class="page-tabs menuTabs tab-ui-menu" id="tab-menu">
+            <div class="page-tabs-content" style="margin-left: 0px;">
+
+            </div>
+        </nav>
+        <button class="roll-nav roll-right tabRight" onclick="scrollTabRight()">
+            <i class="fa fa-forward" style="margin-left: 3px;"></i>
+        </button>
+        <div class="btn-group roll-nav roll-right">
+            <button class="dropdown tabClose" data-toggle="dropdown">
+                页签操作<i class="fa fa-caret-down" style="padding-left: 3px;"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" style="min-width: 128px;">
+                <li><a class="tabReload" href="javascript:refreshTab();">刷新当前</a></li>
+                <li><a class="tabCloseCurrent" href="javascript:closeCurrentTab();">关闭当前</a></li>
+                <li><a class="tabCloseAll" href="javascript:closeOtherTabs(true);">全部关闭</a></li>
+                <li><a class="tabCloseOther" href="javascript:closeOtherTabs();">除此之外全部关闭</a></li>
+            </ul>
+        </div>
+        <button class="roll-nav roll-right fullscreen" onclick="App.handleFullScreen()"><i
+                    class="fa fa-arrows-alt"></i></button>
+    </div>
+    <div class="content-iframe " style="background-color: #ffffff; ">
+        <div class="tab-content " id="tab-content">
+
+        </div>
+    </div>
+<!-- /.content-wrapper -->
+</div>
+<!-- /.content-wrapper -->
+
+<footer class="main-footer"></footer>
+
+<!-- page script -->
+<script language="javascript" type="text/javascript">
+    /**
+     * 本地搜索菜单
+     */
+    function search_menu_client() {
+        //要搜索的值
+        var text = $('input[name=q]').val();
+        // console.log("menu search text:" + text);
+        var $ul = $('.sidebar-menu');
+        $ul.find("a.nav-link").each(function () {
+            var $a = $(this).css("border", "");
+            //判断是否含有要搜索的字符串
+            if ($a.children("span.menu-text").text().indexOf(text) >= 0) {
+                //如果a标签的父级是隐藏的就展开
+                $ul = $a.parents("ul");
+                if ($ul.is(":hidden")) {
+                    $a.parents("ul").prev().click();
+                }
+                // 点击该菜单
+                // $a.click().css("border", "1px solid");
+                // 只修改css样式
+                $a.css("border", "1px solid");
+                // return false;
+            }
+        });
+    }
+    /**
+     * 服务端搜索菜单
+     */
+    var __menu_search_doing = 0; // 是否当前已经在搜索
+    function search_menu() {
+        if (__menu_search_doing == 1) {
+            return false;
+        }
+        __menu_search_doing = 1;
+        
+        $('.sidebar-menu').html('');
+        var text = $('input[name=q]').val();
+        showSidebarMenu(text);
+    }
+    $('#menu_search_input').bind('keydown',function(event){
+        if(event.keyCode == "13") {
+            search_menu();
+            // 去除 form 自动提交表单
+            return false; 
+        }
+    });
+    $("#menu_search_input").bind("input",function(){
+        search_menu();
+    });
+
+
+    $(function () {
+        App.setbasePath("");
+        App.setGlobalImgPath("adminlte/images/");
+        var uri = window.location.hash;
+        addTabs({
+            id: '0',
+            title: '首页',
+            close: true, // 首页允许关闭，例如首页是链路地图，会消耗性能
+            url: 'asset/a.html',
+            urlType: "relative"
+        });
+        App.fixIframeCotent();
+
+        showSidebarMenu(); //显示菜单
+
+        //$(window).load(function() { // .load 已废弃
+        $(window).on('load', function() {
+            if(uri == "/") {
+                uri = '#/welcome';
+            }
+            $("ul.treeview-menu li.treeview a").each(function (index, item) {
+                var dataHref = $(this).attr('data-href');
+                var data = "#"+dataHref;
+                if(data == uri) {
+                    console.log(111111)
+                    $(this).trigger("click");
+                }
+            })
+        });
+    })
+
+    var __menu_type = 2; // 右侧区域收拉=1，右侧整体收拉=2
+    var __menu_auto_push = 0; // 菜单是否在鼠标覆盖或离开时，自动收起或展开
+    var __menu_pushing = 0; // 菜单是否在push中，提高UI性能
+    var __menu_collapsed = 0; // 是否菜单处于收起状态
+    $("body").on("expanded.pushMenu", function() {
+        // 展开菜单
+        __menu_collapsed = 0;
+        __menu_pushing = 0;
+    });
+    $("body").on("collapsed.pushMenu", function() {
+        // 收起菜单
+        __menu_collapsed = 1;
+        __menu_pushing = 0;
+    });
+    function menuSetAutoPush() {
+        __menu_auto_push = __menu_auto_push === 1 ? 0 : 1; // 菜单自动收起或展开状态切换
+    }
+    function menuExpanded() {
+        if (__menu_pushing === 1) { return; } // pushing 不重复触发push动作
+        if (__menu_collapsed === 1 && __menu_auto_push === 1) {
+            __menu_pushing = 1;
+            $('[data-toggle="push-menu"]').pushMenu('toggle'); // 展开菜单
+        }
+    }
+    function menuCollapsed() {
+        if (__menu_pushing === 1) { return; } // pushing 不重复触发push动作
+        if (__menu_collapsed === 0 && __menu_auto_push === 1) {
+            __menu_pushing = 1;
+            $('[data-toggle="push-menu"]').pushMenu('toggle'); // 收起菜单
+        }
+    }
+    function setMenuHeight() {
+        var height_page = $(document).height();
+        var height_header = $('#header_main').outerHeight(true);
+        var height_user = $('#div_left_user_panel').outerHeight(true);
+        var height_search = $('#div_left_menu_search').outerHeight(true);
+        var height_menu = $(document).height() - height_header - height_user - height_search - 22;
+        console.log("height_page height:" + height_page);
+        console.log("header_main height:" + height_header);
+        console.log("height_user height:" + height_user);
+        console.log("height_search height:" + height_search);
+        console.log("div_left_menu_tree height:" + height_menu);
+        $('#div_left_menu_tree').css('height', height_menu);
+        $('#div_left_menu_tree').css('overflow', 'auto'); // 增加滚动条
+    }
+    $("#a_navbar_push").on("click", function () {
+        if (__menu_type == 2) {
+            menuSetAutoPush();
+        }
+    });
+    $("#aside_main_sidebar").on("mouseout", function () {
+        if (__menu_type == 2) {
+            menuCollapsed();
+        }
+    });
+    $("#aside_main_sidebar").on("mouseover", function () {
+        if (__menu_type == 2) {
+            menuExpanded();
+        }
+    });
+    $(document).ready(function() {
+        if (__menu_type == 2) {
+            setMenuHeight();
+        }
+    });
+</script>
+</body>
+</html>
+
